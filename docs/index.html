@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DragDrop</title>
+
+    <style>
+        #objeto {
+            width: 100px;
+            height: 150px;
+            margin-top: 20px;
+            margin-left: 120px;
+            border: 1px solid #aaaaaa;
+        }
+
+        #fundo1 {
+            position: absolute;
+            background-image: url("https://static.wixstatic.com/media/71e457_c58569f97ecd4caab2e4dfec0a03e404~mv2.png/v1/fill/w_400,h_200,al_c/71e457_c58569f97ecd4caab2e4dfec0a03e404~mv2.png");
+        }
+
+        #fundo2 {
+            position: absolute;
+            background-image: url("https://static.wixstatic.com/media/71e457_cc7f3e753b874ce3adfbecfd65d91f2c~mv2.png/v1/fill/w_400,h_200,al_c/71e457_cc7f3e753b874ce3adfbecfd65d91f2c~mv2.png")
+        }
+
+        .tamanhoDrop {
+            position: absolute;
+            width: 360px;
+            height: 200px;
+            top: 5px;
+            border: 1px solid #aaaaaa;
+        }
+
+        #div1,
+        #div2 {
+            float: left;
+            width: 400px;
+            height: 200px;
+            margin: 5px;
+            padding: 10px;
+            border: 1px solid black;
+        }
+    </style>
+
+    <script>
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+
+        function drag(event) {
+            event.dataTransfer.setData("text", event.target.id);
+        }
+
+        function drop(ev) {
+            event.preventDefault();
+            var data = event.dataTransfer.getData("text");
+            event.target.appendChild(document.getElementById(data));
+        }
+    </script>
+
+</head>
+
+<body>
+    
+    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <ul id="fundo1" class="tamanhoDrop">
+    </div>
+
+    <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <ul id="fundo2" class="tamanhoDrop">
+    </div>
+
+    <img id="objeto" src="https://static.wixstatic.com/media/71e457_5bb0f674cc4147a6bb50dc4c261b1d56~mv2.png/v1/fill/w_187,h_254,al_c,usm_0.66_1.00_0.01/71e457_5bb0f674cc4147a6bb50dc4c261b1d56~mv2.png"
+        draggable="true" ondragstart="drag(event)">
+</body>
+
+</html>
